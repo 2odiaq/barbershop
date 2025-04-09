@@ -1,4 +1,4 @@
-# Precision Cuts Barbershop Website
+# MrBarber Barbershop Website
 
 A modern, responsive website for a barbershop that showcases services, allows appointment bookings, and strengthens online presence.
 
