@@ -1,0 +1,212 @@
+{% extends 'base.html' %} {% block title %}Gallery - Precision Cuts Barbershop{%
+endblock %} {% block content %}
+<!-- Page Header -->
+<section class="page-header py-5 bg-dark text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h1 class="display-4">Our Barbershop</h1>
+        <p class="lead">Take a tour of our modern and comfortable facility</p>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-center">
+            <li class="breadcrumb-item">
+              <a href="{{ url_for('index') }}">Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Gallery</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery Section -->
+<section class="gallery-section py-5">
+  <div class="container">
+    <div class="section-title">
+      <h2>Our Barbershop</h2>
+      <p>Take a tour of our modern and comfortable facility</p>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="gallery-item">
+          <a href="{{ url_for('static', filename='images/glr_1.jpg') }}">
+            <img
+              src="{{ url_for('static', filename='images/glr_1.jpg') }}"
+              alt="Barbershop Interior"
+              class="img-fluid"
+            />
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </a>
+          <div class="mt-2">
+            <h5>Barbershop Interior</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="gallery-item">
+          <a href="{{ url_for('static', filename='images/glr_2.jpg') }}">
+            <img
+              src="{{ url_for('static', filename='images/glr_2.jpg') }}"
+              alt="Barbershop Chairs"
+              class="img-fluid"
+            />
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </a>
+          <div class="mt-2">
+            <h5>Barbershop Chairs</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="gallery-item">
+          <a href="{{ url_for('static', filename='images/glr_3.jpg') }}">
+            <img
+              src="{{ url_for('static', filename='images/glr_3.jpg') }}"
+              alt="Waiting Area"
+              class="img-fluid"
+            />
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </a>
+          <div class="mt-2">
+            <h5>Waiting Area</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title mt-5">
+      <h2>Meet Our Barbers</h2>
+      <p>Our team of skilled professionals</p>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="gallery-item">
+          <a href="{{ url_for('static', filename='images/barber1.jpg') }}">
+            <img
+              src="{{ url_for('static', filename='images/barber1.jpg') }}"
+              alt="Robert Johnson"
+              class="img-fluid"
+            />
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </a>
+          <div class="mt-2">
+            <h5>Robert Johnson</h5>
+            <p>Founder & Master Barber</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="gallery-item">
+          <a href="{{ url_for('static', filename='images/barber2.jpg') }}">
+            <img
+              src="{{ url_for('static', filename='images/barber2.jpg') }}"
+              alt="Michael Torres"
+              class="img-fluid"
+            />
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </a>
+          <div class="mt-2">
+            <h5>Michael Torres</h5>
+            <p>Senior Barber</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="gallery-item">
+          <a href="{{ url_for('static', filename='images/barber3.jpg') }}">
+            <img
+              src="{{ url_for('static', filename='images/barber3.jpg') }}"
+              alt="David Wilson"
+              class="img-fluid"
+            />
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </a>
+          <div class="mt-2">
+            <h5>David Wilson</h5>
+            <p>Style Specialist</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %} {% block extra_js %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const galleryItems = document.querySelectorAll(".gallery-item a");
+
+    galleryItems.forEach((item) => {
+      item.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        const imgSrc = this.getAttribute("href");
+        const imgAlt = this.querySelector("img").getAttribute("alt");
+
+        // Remove any existing lightbox
+        const existingLightbox = document.querySelector(".lightbox");
+        if (existingLightbox) {
+          existingLightbox.remove();
+        }
+
+        const lightbox = document.createElement("div");
+        lightbox.className = "lightbox";
+        lightbox.innerHTML = `
+          <div class="lightbox-content">
+            <button class="close-lightbox" aria-label="Close lightbox">&times;</button>
+            <img src="${imgSrc}" alt="${imgAlt}">
+            <p>${imgAlt}</p>
+          </div>
+        `;
+
+        document.body.appendChild(lightbox);
+        document.body.style.overflow = "hidden";
+
+        // Prevent closing when clicking inside the lightbox content
+        const content = lightbox.querySelector(".lightbox-content");
+        content.addEventListener("click", function (event) {
+          event.stopPropagation();
+        });
+
+        // Close on background click
+        lightbox.addEventListener("click", function () {
+          lightbox.remove();
+          document.body.style.overflow = "";
+        });
+
+        // Close on button click
+        const closeBtn = lightbox.querySelector(".close-lightbox");
+        closeBtn.addEventListener("click", function () {
+          lightbox.remove();
+          document.body.style.overflow = "";
+        });
+        // Close on Escape key
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") {
+            const openLightbox = document.querySelector(".lightbox");
+            if (openLightbox) {
+              openLightbox.remove();
+              document.body.style.overflow = "";
+            }
+          }
+        });
+      });
+    });
+  });
+</script>
+
+{% endblock %}

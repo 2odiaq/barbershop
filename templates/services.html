@@ -1,0 +1,402 @@
+{% extends 'base.html' %} {% block title %}Services - Precision Cuts
+Barbershop{% endblock %} {% block content %}
+<!-- Page Header -->
+<section class="page-header bg-dark text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center py-5">
+        <h1>Our Services</h1>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-center">
+            <li class="breadcrumb-item">
+              <a href="{{ url_for('index') }}">Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Services</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section class="section-padding">
+  <div class="container">
+    <div class="section-title">
+      <h2>Professional Grooming Services</h2>
+      <p>Quality haircuts and grooming for the modern man</p>
+    </div>
+
+    <!-- Service Category Filter -->
+    <div class="service-category-filter">
+      <button class="btn category-btn active" data-category="all">All</button>
+      {% if categories %} {% for category in categories %}
+      <button class="btn category-btn" data-category="{{ category[0] }}">
+        {{ category[0] }}
+      </button>
+      {% endfor %} {% endif %}
+    </div>
+
+    <div class="row">
+      {% if services %} {% for service in services %}
+      <div
+        class="col-md-4 mb-4 service-item"
+        data-category="{{ service.category }}"
+      >
+        <div class="service-card animate">
+          <div class="service-icon">
+            {% if service.category == 'Haircuts' %}
+            <i class="fas fa-cut"></i>
+            {% elif service.category == 'Beard' %}
+            <i class="fas fa-cut"></i>
+            {% elif service.category == 'Shaving' %}
+            <i class="fas fa-cut"></i>
+            {% elif service.category == 'Kids' %}
+            <i class="fas fa-cut"></i>
+            {% else %}
+            <i class="fas fa-cut"></i>
+            {% endif %}
+          </div>
+          <h3 class="service-title">{{ service.name }}</h3>
+          <p>{{ service.description }}</p>
+          <div class="service-duration">{{ service.duration }} minutes</div>
+          <div class="service-price">${{ service.price }}</div>
+          <a
+            href="{{ url_for('booking') }}?service={{ service.id }}"
+            class="btn btn-primary mt-3"
+            >Book Now</a
+          >
+        </div>
+      </div>
+      {% endfor %} {% else %}
+      <div class="col-12 text-center">
+        <p>No services available at the moment. Please check back later.</p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- Service Process Section -->
+<section class="section-padding bg-light">
+  <div class="container">
+    <div class="section-title">
+      <h2>Our Service Process</h2>
+      <p>Experience the ultimate grooming treatment</p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3 mb-4">
+        <div class="process-item text-center animate">
+          <div class="process-icon mb-3">
+            <i class="fas fa-calendar-check fa-3x text-primary"></i>
+          </div>
+          <div class="process-number">1</div>
+          <h3>Book Appointment</h3>
+          <p>
+            Schedule your visit online or give us a call. Choose your preferred
+            barber and service.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="process-item text-center animate" data-delay="200">
+          <div class="process-icon mb-3">
+            <i class="fas fa-user-check fa-3x text-primary"></i>
+          </div>
+          <div class="process-number">2</div>
+          <h3>Consultation</h3>
+          <p>
+            Discuss your style preferences with your barber to achieve the
+            perfect look.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="process-item text-center animate" data-delay="400">
+          <div class="process-icon mb-3">
+            <i class="fas fa-cut fa-3x text-primary"></i>
+          </div>
+          <div class="process-number">3</div>
+          <h3>Premium Service</h3>
+          <p>
+            Relax and enjoy our professional grooming services with attention to
+            detail.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="process-item text-center animate" data-delay="600">
+          <div class="process-icon mb-3">
+            <i class="fas fa-smile fa-3x text-primary"></i>
+          </div>
+          <div class="process-number">4</div>
+          <h3>Final Look</h3>
+          <p>
+            Leave with a fresh look and schedule your next appointment to
+            maintain your style.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Additional Services Section -->
+<section class="section-padding">
+  <div class="container">
+    <div class="section-title">
+      <h2>Premium Add-Ons</h2>
+      <p>Enhance your grooming experience with these additional services</p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <div class="addon-card animate">
+          <div class="row g-0 align-items-center">
+            <div class="col-md-4">
+              <img
+                src="{{ url_for('static', filename='images/glr_3.jpg') }}"
+                alt="Hot Towel Treatment"
+                class="img-fluid rounded-start"
+              />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h4 class="card-title">Hot Towel Treatment</h4>
+                <p class="card-text">
+                  Experience the ultimate relaxation with our hot towel facial
+                  treatment. Opens pores, softens skin, and prepares for a
+                  closer shave.
+                </p>
+                <div class="addon-price">$10</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="addon-card animate" data-delay="200">
+          <div class="row g-0 align-items-center">
+            <div class="col-md-4">
+              <img
+                src="{{ url_for('static', filename='images/about-1.jpg') }}"
+                alt="Scalp Massage"
+                class="img-fluid rounded-start"
+              />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h4 class="card-title">Scalp Massage</h4>
+                <p class="card-text">
+                  Enjoy a relaxing scalp massage that stimulates blood flow,
+                  reduces stress, and promotes hair health.
+                </p>
+                <div class="addon-price">$15</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="addon-card animate" data-delay="400">
+          <div class="row g-0 align-items-center">
+            <div class="col-md-4">
+              <img
+                src="{{ url_for('static', filename='images/glr_1.jpg') }}"
+                alt="Facial Treatment"
+                class="img-fluid rounded-start"
+              />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h4 class="card-title">Facial Treatment</h4>
+                <p class="card-text">
+                  Rejuvenate your skin with our specialized facial treatment,
+                  including cleansing, exfoliation, and moisturizing.
+                </p>
+                <div class="addon-price">$25</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="addon-card animate" data-delay="600">
+          <div class="row g-0 align-items-center">
+            <div class="col-md-4">
+              <img
+                src="{{ url_for('static', filename='images/glr_2.jpg') }}"
+                alt="Hair Coloring"
+                class="img-fluid rounded-start"
+              />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h4 class="card-title">Hair Coloring</h4>
+                <p class="card-text">
+                  Cover gray hair or try a new look with our professional hair
+                  coloring services using premium products.
+                </p>
+                <div class="addon-price">Starting at $35</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Package Deals Section -->
+<section class="section-padding bg-light">
+  <div class="container">
+    <div class="section-title">
+      <h2>Package Deals</h2>
+      <p>Save with our premium service packages</p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="package-card card animate">
+          <div class="card-header bg-dark text-white">
+            <h3 class="mb-0">Essential Package</h3>
+          </div>
+          <div class="card-body">
+            <div class="package-price">$40</div>
+            <ul class="package-features list-unstyled mt-3">
+              <li>
+                <i class="fas fa-check text-primary me-2"></i> Classic Haircut
+              </li>
+              <li><i class="fas fa-check text-primary me-2"></i> Beard Trim</li>
+              <li><i class="fas fa-check text-primary me-2"></i> Hot Towel</li>
+              <li>
+                <i class="fas fa-times text-muted me-2"></i> Scalp Massage
+              </li>
+              <li>
+                <i class="fas fa-times text-muted me-2"></i> Facial Treatment
+              </li>
+            </ul>
+            <a
+              href="{{ url_for('booking') }}?package=essential"
+              class="btn btn-primary w-100 mt-3"
+              >Book This Package</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="package-card card animate recommended" data-delay="200">
+          <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Premium Package</h3>
+            <span class="badge bg-dark">Most Popular</span>
+          </div>
+          <div class="card-body">
+            <div class="package-price">$65</div>
+            <ul class="package-features list-unstyled mt-3">
+              <li>
+                <i class="fas fa-check text-primary me-2"></i> Premium Haircut
+              </li>
+              <li>
+                <i class="fas fa-check text-primary me-2"></i> Beard Sculpting
+              </li>
+              <li><i class="fas fa-check text-primary me-2"></i> Hot Towel</li>
+              <li>
+                <i class="fas fa-check text-primary me-2"></i> Scalp Massage
+              </li>
+              <li>
+                <i class="fas fa-times text-muted me-2"></i> Facial Treatment
+              </li>
+            </ul>
+            <a
+              href="{{ url_for('booking') }}?package=premium"
+              class="btn btn-primary w-100 mt-3"
+              >Book This Package</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="package-card card animate" data-delay="400">
+          <div class="card-header bg-dark text-white">
+            <h3 class="mb-0">Executive Package</h3>
+          </div>
+          <div class="card-body">
+            <div class="package-price">$90</div>
+            <ul class="package-features list-unstyled mt-3">
+              <li>
+                <i class="fas fa-check text-primary me-2"></i> Signature Haircut
+              </li>
+              <li>
+                <i class="fas fa-check text-primary me-2"></i> Beard Sculpting
+              </li>
+              <li><i class="fas fa-check text-primary me-2"></i> Hot Towel</li>
+              <li>
+                <i class="fas fa-check text-primary me-2"></i> Scalp Massage
+              </li>
+              <li>
+                <i class="fas fa-check text-primary me-2"></i> Facial Treatment
+              </li>
+            </ul>
+            <a
+              href="{{ url_for('booking') }}?package=executive"
+              class="btn btn-primary w-100 mt-3"
+              >Book This Package</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section-padding bg-dark text-white text-center">
+  <div class="container">
+    <h2 class="mb-4 animate">Ready for a Fresh Look?</h2>
+    <p class="lead mb-4 animate">
+      Book your appointment today and experience the Precision Cuts difference.
+    </p>
+    <a href="{{ url_for('booking') }}" class="btn btn-primary btn-lg animate"
+      >Book an Appointment</a
+    >
+  </div>
+</section>
+{% endblock %} {% block extra_js %}
+<script>
+  // JavaScript for service filtering
+  document.addEventListener("DOMContentLoaded", function () {
+    const categoryBtns = document.querySelectorAll(".category-btn");
+    const serviceItems = document.querySelectorAll(".service-item");
+
+    categoryBtns.forEach((btn) => {
+      btn.addEventListener("click", function () {
+        // Remove active class from all buttons
+        categoryBtns.forEach((b) => b.classList.remove("active"));
+
+        // Add active class to clicked button
+        this.classList.add("active");
+
+        // Get selected category
+        const category = this.getAttribute("data-category");
+
+        // Show all services if 'all' category is selected
+        if (category === "all") {
+          serviceItems.forEach((item) => {
+            item.style.display = "block";
+          });
+        } else {
+          // Filter services by category
+          serviceItems.forEach((item) => {
+            if (item.getAttribute("data-category") === category) {
+              item.style.display = "block";
+            } else {
+              item.style.display = "none";
+            }
+          });
+        }
+      });
+    });
+  });
+</script>
+{% endblock %}

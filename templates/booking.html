@@ -1,0 +1,422 @@
+{% extends 'base.html' %} {% block title %}Book an Appointment - Precision Cuts
+Barbershop{% endblock %} {% block extra_css %}
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+/>
+{% endblock %} {% block content %}
+<!-- Page Header -->
+<section class="page-header bg-dark text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center py-5">
+        <h1>Book an Appointment</h1>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-center">
+            <li class="breadcrumb-item">
+              <a href="{{ url_for('index') }}">Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Book an Appointment
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Booking Section -->
+<section class="section-padding">
+  <div class="container">
+    <div class="section-title">
+      <h2>Schedule Your Visit</h2>
+      <p>Select your preferred service, barber, date, and time</p>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-8 mb-4 mb-lg-0">
+        <div class="booking-form">
+          <form
+            id="booking-form"
+            method="POST"
+            action="{{ url_for('booking') }}"
+          >
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <div class="form-group">
+                  <label for="service-id" class="form-label"
+                    >Select Service *</label
+                  >
+                  <select
+                    class="form-select"
+                    id="service-id"
+                    name="service_id"
+                    required
+                  >
+                    <option value="">Select Service</option>
+                    {% if services %} {% for service in services %}
+                    <option
+                      value="{{ service.id }}"
+                      data-duration="{{ service.duration }}"
+                      data-price="{{ service.price }}"
+                    >
+                      {{ service.name }}
+                    </option>
+                    {% endfor %} {% endif %}
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="form-group">
+                  <label for="barber-id" class="form-label"
+                    >Select Barber *</label
+                  >
+                  <select
+                    class="form-select"
+                    id="barber-id"
+                    name="barber_id"
+                    required
+                  >
+                    <option value="">Select Barber</option>
+                    {% if barbers %} {% for barber in barbers %}
+                    <option value="{{ barber.id }}">{{ barber.name }}</option>
+                    {% endfor %} {% endif %}
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <div class="form-group">
+                  <label for="booking-date" class="form-label">Date *</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="booking-date"
+                    name="date"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="form-group">
+                  <label for="booking-time" class="form-label">Time *</label>
+                  <select
+                    class="form-select"
+                    id="booking-time"
+                    name="time"
+                    required
+                    disabled
+                  >
+                    <option value="">Select Time</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <div class="form-group">
+                  <label for="booking-name" class="form-label"
+                    >Your Name *</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="booking-name"
+                    name="name"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="form-group">
+                  <label for="booking-email" class="form-label"
+                    >Email Address *</label
+                  >
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="booking-email"
+                    name="email"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <div class="form-group">
+                  <label for="booking-phone" class="form-label"
+                    >Phone Number *</label
+                  >
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="booking-phone"
+                    name="phone"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="form-group">
+                  <label for="booking-notes" class="form-label"
+                    >Special Requests</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="booking-notes"
+                    name="notes"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-check mb-3">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="terms-check"
+                required
+              />
+              <label class="form-check-label" for="terms-check">
+                I agree to the
+                <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal"
+                  >terms and conditions</a
+                >
+              </label>
+            </div>
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary btn-lg">
+                Book Appointment
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="booking-info">
+          <h3>Booking Information</h3>
+
+          <div class="info-item">
+            <i class="fas fa-info-circle"></i>
+            <strong>Selected Service:</strong>
+            <span id="service-selection">--</span>
+          </div>
+
+          <div class="info-item">
+            <i class="fas fa-clock"></i>
+            <strong>Duration:</strong>
+            <span id="service-duration">--</span>
+          </div>
+
+          <div class="info-item">
+            <i class="fas fa-tag"></i>
+            <strong>Price:</strong>
+            <span id="service-price">--</span>
+          </div>
+
+          <hr />
+
+          <div class="info-item">
+            <i class="fas fa-user"></i>
+            <strong>Barber:</strong>
+            <span id="barber-selection">--</span>
+          </div>
+
+          <div class="info-item">
+            <i class="fas fa-calendar-alt"></i>
+            <strong>Date & Time:</strong>
+            <span id="datetime-selection">--</span>
+          </div>
+
+          <hr />
+
+          <div class="booking-policy mt-4">
+            <h4>Booking Policy</h4>
+            <ul>
+              <li>Please arrive 5-10 minutes before your appointment time.</li>
+              <li>
+                If you need to cancel or reschedule, please do so at least 24
+                hours in advance.
+              </li>
+              <li>
+                Late arrivals may result in reduced service time or
+                rescheduling.
+              </li>
+              <li>We accept cash and all major credit cards.</li>
+            </ul>
+          </div>
+
+          <div class="contact-info mt-4">
+            <h4>Need Help?</h4>
+            <p>
+              Call us at <a href="tel:+11234567890">(123) 456-7890</a> or email
+              <a href="mailto:info@precisioncuts.com">info@precisioncuts.com</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Terms and Conditions Modal -->
+<div
+  class="modal fade"
+  id="termsModal"
+  tabindex="-1"
+  aria-labelledby="termsModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <h6>Booking Policy</h6>
+        <p>
+          By booking an appointment with Precision Cuts Barbershop, you agree to
+          the following terms and conditions:
+        </p>
+
+        <h6>1. Appointment Scheduling</h6>
+        <p>
+          All appointments are subject to availability. We recommend booking in
+          advance to secure your preferred date and time.
+        </p>
+
+        <h6>2. Cancellation Policy</h6>
+        <p>
+          If you need to cancel or reschedule your appointment, please provide
+          at least 24 hours' notice. Failure to provide adequate notice may
+          result in a cancellation fee of 50% of the service price.
+        </p>
+
+        <h6>3. Late Arrivals</h6>
+        <p>
+          We kindly ask that you arrive 5-10 minutes before your scheduled
+          appointment time. If you arrive late, your service may be shortened to
+          accommodate other scheduled appointments, or you may need to
+          reschedule.
+        </p>
+
+        <h6>4. No-Shows</h6>
+        <p>
+          Failure to show up for a scheduled appointment without prior notice
+          will result in a no-show fee equal to 100% of the service price.
+          Repeated no-shows may result in the requirement of a deposit for
+          future bookings.
+        </p>
+
+        <h6>5. Payment</h6>
+        <p>
+          Payment is due at the time of service. We accept cash and all major
+          credit cards.
+        </p>
+
+        <h6>6. Personal Information</h6>
+        <p>
+          By providing your personal information, you consent to our collection
+          and use of this information for the purpose of scheduling and
+          providing services. We will not share your personal information with
+          third parties except as required by law.
+        </p>
+
+        <h6>7. Right to Refuse Service</h6>
+        <p>
+          We reserve the right to refuse service to anyone for any reason at our
+          discretion.
+        </p>
+
+        <p>
+          By checking the "I agree to the terms and conditions" box, you
+          acknowledge that you have read, understood, and agree to be bound by
+          these terms and conditions.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+          I Understand
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="{{ url_for('static', filename='js/booking.js') }}"></script>
+<script>
+  // Additional JavaScript for this page
+  document.addEventListener("DOMContentLoaded", function () {
+    // Update service selection display
+    const serviceSelect = document.getElementById("service-id");
+    const serviceSelection = document.getElementById("service-selection");
+
+    if (serviceSelect && serviceSelection) {
+      serviceSelect.addEventListener("change", function () {
+        const selectedOption = this.options[this.selectedIndex];
+        serviceSelection.textContent =
+          selectedOption.textContent !== "Select Service"
+            ? selectedOption.textContent
+            : "--";
+      });
+    }
+
+    // Update barber selection display
+    const barberSelect = document.getElementById("barber-id");
+    const barberSelection = document.getElementById("barber-selection");
+
+    if (barberSelect && barberSelection) {
+      barberSelect.addEventListener("change", function () {
+        const selectedOption = this.options[this.selectedIndex];
+        barberSelection.textContent =
+          selectedOption.textContent !== "Select Barber"
+            ? selectedOption.textContent
+            : "--";
+      });
+    }
+
+    // Update date and time selection display
+    const dateInput = document.getElementById("booking-date");
+    const timeSelect = document.getElementById("booking-time");
+    const datetimeSelection = document.getElementById("datetime-selection");
+
+    function updateDatetimeDisplay() {
+      if (dateInput.value && timeSelect.value) {
+        const date = new Date(dateInput.value);
+        const formattedDate = date.toLocaleDateString("en-US", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
+        const selectedOption = timeSelect.options[timeSelect.selectedIndex];
+        datetimeSelection.textContent =
+          formattedDate + " at " + selectedOption.textContent;
+      } else {
+        datetimeSelection.textContent = "--";
+      }
+    }
+
+    if (dateInput && timeSelect && datetimeSelection) {
+      dateInput.addEventListener("change", updateDatetimeDisplay);
+      timeSelect.addEventListener("change", updateDatetimeDisplay);
+    }
+  });
+</script>
+{% endblock %}

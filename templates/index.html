@@ -1,0 +1,219 @@
+{% extends 'base.html' %} {% block title %}MrBarber - Professional Barbershop{%
+endblock %} {% block content %}
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1 class="animate">CLASSIC CUTS</h1>
+      <p class="animate">EXCEPTIONAL GROOMING FOR DISTINGUISHED GENTLEMEN</p>
+      <a href="{{ url_for('booking') }}" class="btn btn-primary btn-lg animate"
+        >BOOK YOUR EXPERIENCE</a
+      >
+    </div>
+  </div>
+</section>
+
+<!-- Featured Services Section -->
+<section class="section-padding">
+  <div class="container">
+    <div class="section-title">
+      <h2>Our Services</h2>
+      <p>Quality grooming services for men of all ages</p>
+    </div>
+
+    <div class="row">
+      {% if services %} {% for service in services %}
+      <div class="col-md-4 mb-4">
+        <div class="service-card animate">
+          <div class="service-icon">
+            {% if service.category == 'Haircuts' %}
+            <i class="fas fa-cut"></i>
+            {% elif service.category == 'Beard' %}
+            <i class="fas fa-cut"></i>
+            {% elif service.category == 'Shaving' %}
+            <i class="fas fa-cut"></i>
+            {% elif service.category == 'Kids' %}
+            <i class="fas fa-cut"></i>
+            {% else %}
+            <i class="fas fa-cut"></i>
+            {% endif %}
+          </div>
+          <h3 class="service-title">{{ service.name }}</h3>
+          <p>{{ service.description }}</p>
+          <div class="service-duration">{{ service.duration }} minutes</div>
+          <div class="service-price">${{ service.price }}</div>
+          <a href="{{ url_for('booking') }}" class="btn btn-primary mt-3"
+            >Book Now</a
+          >
+        </div>
+      </div>
+      {% endfor %} {% else %}
+      <div class="col-12 text-center">
+        <p>No services available at the moment. Please check back later.</p>
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="{{ url_for('services') }}" class="btn btn-outline-dark"
+        >View All Services</a
+      >
+    </div>
+  </div>
+</section>
+
+<!-- About Preview Section -->
+<section class="section-padding about-section">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-4 mb-lg-0">
+        <div class="about-content animate">
+          <h2>Professional Grooming Experience</h2>
+          <p>
+            At MrBarber, we combine traditional barbering techniques with modern
+            styles to give you the perfect look. Our skilled barbers are
+            dedicated to providing exceptional service in a relaxed and
+            welcoming environment.
+          </p>
+          <p>
+            We take pride in our attention to detail and commitment to customer
+            satisfaction. Whether you're looking for a classic cut or the latest
+            trend, we've got you covered.
+          </p>
+          <a href="{{ url_for('about') }}" class="btn btn-primary mt-3"
+            >Learn More About Us</a
+          >
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="row">
+          <div class="col-6 mb-4">
+            <div class="about-image animate">
+              <img
+                src="{{ url_for('static', filename='images/about-1.jpg') }}"
+                alt="Barbershop Interior"
+                class="img-fluid rounded shadow"
+              />
+            </div>
+          </div>
+          <div class="col-6 mb-4">
+            <div class="about-image animate" data-delay="200">
+              <img
+                src="{{ url_for('static', filename='images/about-2.jpg') }}"
+                alt="Barber at Work"
+                class="img-fluid rounded shadow"
+              />
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="about-image animate" data-delay="400">
+              <img
+                src="{{ url_for('static', filename='images/about-3.jpg') }}"
+                alt="Barbershop Team"
+                class="img-fluid rounded shadow"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Section -->
+<section class="section-padding text-center bg-dark text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 mb-4 mb-md-0">
+        <div class="stat-item animate">
+          <i class="fas fa-users fa-3x mb-3"></i>
+          <h3>5000+</h3>
+          <p>Happy Clients</p>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4 mb-md-0">
+        <div class="stat-item animate" data-delay="200">
+          <i class="fas fa-cut fa-3x mb-3"></i>
+          <h3>10,000+</h3>
+          <p>Haircuts</p>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4 mb-md-0">
+        <div class="stat-item animate" data-delay="400">
+          <i class="fas fa-calendar-check fa-3x mb-3"></i>
+          <h3>8</h3>
+          <p>Years of Experience</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stat-item animate" data-delay="600">
+          <i class="fas fa-award fa-3x mb-3"></i>
+          <h3>15+</h3>
+          <p>Awards Won</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Preview -->
+<section class="section-padding testimonial-section">
+  <div class="container">
+    <div class="section-title">
+      <h2>What Our Clients Say</h2>
+      <p>Hear from our satisfied customers</p>
+    </div>
+
+    <div class="row">
+      {% if testimonials %} {% for testimonial in testimonials %}
+      <div class="col-md-4 mb-4">
+        <div class="testimonial-card animate">
+          <div class="testimonial-content">{{ testimonial.content }}</div>
+          <div class="testimonial-author">{{ testimonial.customer_name }}</div>
+          <div class="testimonial-date">
+            {{ testimonial.date.strftime('%B %d, %Y') }}
+          </div>
+          <div class="testimonial-rating">
+            {% for i in range(5) %} {% if i < testimonial.rating %}
+            <i class="fas fa-star"></i>
+            {% else %}
+            <i class="far fa-star"></i>
+            {% endif %} {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %} {% else %}
+      <div class="col-12 text-center">
+        <p>No testimonials available yet. Be the first to leave a review!</p>
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="{{ url_for('testimonials') }}" class="btn btn-outline-dark"
+        >View All Testimonials</a
+      >
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section-padding bg-dark text-white text-center">
+  <div class="container">
+    <h2 class="mb-4 animate">Ready for a Fresh Look?</h2>
+    <p class="lead mb-4 animate">
+      Book your appointment today and experience the MrBarber difference.
+    </p>
+    <a href="{{ url_for('booking') }}" class="btn btn-primary btn-lg animate"
+      >Book an Appointment</a
+    >
+  </div>
+</section>
+{% endblock %} {% block extra_js %}
+<script>
+  // Additional JavaScript specific to the homepage
+  document.addEventListener("DOMContentLoaded", function () {
+    // Add any homepage-specific JavaScript here
+  });
+</script>
+{% endblock %}

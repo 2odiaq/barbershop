@@ -1,0 +1,453 @@
+{% extends 'base.html' %} {% block title %}Contact Us - Precision Cuts
+Barbershop{% endblock %} {% block content %}
+<!-- Page Header -->
+<section class="page-header bg-dark text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center py-5">
+        <h1>Contact Us</h1>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-center">
+            <li class="breadcrumb-item">
+              <a href="{{ url_for('index') }}">Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Contact</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Information Section -->
+<section class="section-padding">
+  <div class="container">
+    <div class="section-title">
+      <h2>Get in Touch</h2>
+      <p>We'd love to hear from you</p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 mb-4 mb-md-0">
+        <div class="contact-info-item animate">
+          <div class="contact-info-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="contact-info-content">
+            <h5>Our Location</h5>
+            <p>Hlavná 101/45<br />Košice 040 01<br />Slovakia</p>
+            <a
+              href="https://maps.google.com/?q=Hlavná 101/45, Košice 040 01, Slovakia"
+              target="_blank"
+              class="btn btn-sm btn-outline-dark mt-2"
+              >Get Directions</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4 mb-md-0">
+        <div class="contact-info-item animate" data-delay="200">
+          <div class="contact-info-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div class="contact-info-content">
+            <h5>Call Us</h5>
+            <p>
+              Phone: <a href="tel:+421904742999">+421 904 742 999</a><br />
+              Alternate: <a href="tel:+421952050656">+421 952 050 656</a>
+            </p>
+            <a href="tel:+421904742999" class="btn btn-sm btn-outline-dark mt-2"
+              >Call Now</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="contact-info-item animate" data-delay="400">
+          <div class="contact-info-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="contact-info-content">
+            <h5>Email Us</h5>
+            <p>
+              General Inquiries:
+              <a href="mailto:info@precisioncuts.com">info@precisioncuts.com</a
+              ><br />
+              Bookings:
+              <a href="mailto:bookings@precisioncuts.com"
+                >bookings@precisioncuts.com</a
+              >
+            </p>
+            <a
+              href="mailto:info@precisioncuts.com"
+              class="btn btn-sm btn-outline-dark mt-2"
+              >Email Now</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-md-4 mb-4 mb-md-0">
+        <div class="contact-info-item animate" data-delay="600">
+          <div class="contact-info-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="contact-info-content">
+            <h5>Opening Hours</h5>
+            <ul class="list-unstyled opening-hours">
+              <li><span>Monday - Friday:</span> 9:00 AM - 8:00 PM</li>
+              <li><span>Saturday:</span> 9:00 AM - 6:00 PM</li>
+              <li><span>Sunday:</span> 10:00 AM - 4:00 PM</li>
+              <li><span>Holidays:</span> Hours may vary</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4 mb-md-0">
+        <div class="contact-info-item animate" data-delay="800">
+          <div class="contact-info-icon">
+            <i class="fas fa-parking"></i>
+          </div>
+          <div class="contact-info-content">
+            <h5>Parking Information</h5>
+            <p>
+              Free street parking is available in front of our shop.
+              Additionally, there's a public parking lot one block away with
+              hourly rates.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="contact-info-item animate" data-delay="1000">
+          <div class="contact-info-icon">
+            <i class="fas fa-bus"></i>
+          </div>
+          <div class="contact-info-content">
+            <h5>Public Transportation</h5>
+            <p>
+              Bus routes 10, 15, and 22 stop within a block of our location. The
+              nearest subway station is a 10-minute walk away.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Map and Contact Form Section -->
+<section class="section-padding bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 mb-4 mb-lg-0">
+        <div class="map-container animate">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2632.1907724455496!2d21.258485999999998!3d48.720946299999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473ee065396fb4a9%3A0x8a30aac32be10f7d!2sMr.%20Barber%20-%20Holi%C4%8Dstvo%20Ko%C5%A1ice!5e0!3m2!1suk!2ssk!4v1744216531425!5m2!1suk!2ssk"
+            width="600"
+            height="450"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="contact-form animate" data-delay="200">
+          <h3 class="mb-4">Send Us a Message</h3>
+          <form id="contact-form" action="#" method="POST">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <div class="form-group">
+                  <label for="contact-name" class="form-label"
+                    >Your Name *</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="contact-name"
+                    name="name"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <div class="form-group">
+                  <label for="contact-email" class="form-label"
+                    >Email Address *</label
+                  >
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="contact-email"
+                    name="email"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="contact-subject" class="form-label">Subject *</label>
+              <input
+                type="text"
+                class="form-control"
+                id="contact-subject"
+                name="subject"
+                required
+              />
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="contact-message" class="form-label">Message *</label>
+              <textarea
+                class="form-control"
+                id="contact-message"
+                name="message"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-check mb-3">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="privacy-check"
+                required
+              />
+              <label class="form-check-label" for="privacy-check">
+                I agree to the privacy policy and consent to having my data
+                processed.
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="section-padding">
+  <div class="container">
+    <div class="section-title">
+      <h2>Frequently Asked Questions</h2>
+      <p>Find answers to common questions</p>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <div class="accordion" id="faqAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button
+                class="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseOne"
+                aria-expanded="true"
+                aria-controls="collapseOne"
+              >
+                Do I need to make an appointment?
+              </button>
+            </h2>
+            <div
+              id="collapseOne"
+              class="accordion-collapse collapse show"
+              aria-labelledby="headingOne"
+              data-bs-parent="#faqAccordion"
+            >
+              <div class="accordion-body">
+                While we do accept walk-ins when available, we strongly
+                recommend making an appointment to ensure you get your preferred
+                time slot and barber. You can book online through our website,
+                call us, or use our mobile app.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo"
+                aria-expanded="false"
+                aria-controls="collapseTwo"
+              >
+                What payment methods do you accept?
+              </button>
+            </h2>
+            <div
+              id="collapseTwo"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingTwo"
+              data-bs-parent="#faqAccordion"
+            >
+              <div class="accordion-body">
+                We accept cash, all major credit cards (Visa, Mastercard,
+                American Express, Discover), Apple Pay, and Google Pay. We
+                currently do not accept personal checks.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseThree"
+                aria-expanded="false"
+                aria-controls="collapseThree"
+              >
+                What if I need to cancel my appointment?
+              </button>
+            </h2>
+            <div
+              id="collapseThree"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingThree"
+              data-bs-parent="#faqAccordion"
+            >
+              <div class="accordion-body">
+                We understand that plans can change. We request that you provide
+                at least 24 hours' notice for cancellations or rescheduling. You
+                can cancel or reschedule your appointment online, through our
+                app, or by giving us a call.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseFour"
+                aria-expanded="false"
+                aria-controls="collapseFour"
+              >
+                Do you offer gift cards?
+              </button>
+            </h2>
+            <div
+              id="collapseFour"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingFour"
+              data-bs-parent="#faqAccordion"
+            >
+              <div class="accordion-body">
+                Yes! Gift cards are available for purchase in-store or online.
+                They can be used for any service or product in our barbershop
+                and make excellent gifts for birthdays, holidays, or special
+                occasions.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFive">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseFive"
+                aria-expanded="false"
+                aria-controls="collapseFive"
+              >
+                Do you have a loyalty program?
+              </button>
+            </h2>
+            <div
+              id="collapseFive"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingFive"
+              data-bs-parent="#faqAccordion"
+            >
+              <div class="accordion-body">
+                Yes, we have a loyalty program where you earn points for every
+                service and product purchase. Once you accumulate enough points,
+                you can redeem them for discounts, free services, or products.
+                Ask our staff for more details or sign up during your next
+                visit.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section-padding bg-dark text-white text-center">
+  <div class="container">
+    <h2 class="mb-4 animate">Ready for a Fresh Look?</h2>
+    <p class="lead mb-4 animate">
+      Book your appointment today and experience the Precision Cuts difference.
+    </p>
+    <a href="{{ url_for('booking') }}" class="btn btn-primary btn-lg animate"
+      >Book an Appointment</a
+    >
+  </div>
+</section>
+{% endblock %} {% block extra_js %}
+<script>
+  // Form validation
+  document.addEventListener("DOMContentLoaded", function () {
+    const contactForm = document.getElementById("contact-form");
+
+    if (contactForm) {
+      contactForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Simple form validation
+        let valid = true;
+        const requiredFields = contactForm.querySelectorAll("[required]");
+
+        requiredFields.forEach((field) => {
+          if (!field.value.trim()) {
+            valid = false;
+            field.classList.add("is-invalid");
+          } else {
+            field.classList.remove("is-invalid");
+          }
+        });
+
+        // Email validation
+        const emailField = document.getElementById("contact-email");
+        if (emailField && emailField.value.trim()) {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(emailField.value.trim())) {
+            valid = false;
+            emailField.classList.add("is-invalid");
+          }
+        }
+
+        if (valid) {
+          // In a real application, you would submit the form data to the server here
+          // For this example, we'll just show a success message
+          contactForm.innerHTML =
+            '<div class="alert alert-success">Thank you for your message! We will get back to you soon.</div>';
+        }
+      });
+    }
+  });
+</script>
+{% endblock %}
